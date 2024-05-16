@@ -9,11 +9,15 @@ import { createApp } from 'vue';
 
 import { createRouter, createWebHistory } from 'vue-router'
 import { routes } from './routes'
+import Swal from 'sweetalert2';
+
 const router = createRouter({
     history: createWebHistory(),
     linkActiveClass: 'active',
     routes
 })
+
+import ModalCreate from './Components/CreateModal.vue';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -25,8 +29,12 @@ const app = createApp({});
 
 app.use(router);
 
+app.component('modal-create', ModalCreate);
+
 import ExampleComponent from './Components/ExampleComponent.vue';
 app.component('example-component', ExampleComponent);
+
+app.config.globalProperties.$swal = Swal;
 
 /**
  * The following block of code may be used to automatically register your

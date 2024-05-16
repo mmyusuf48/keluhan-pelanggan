@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KeluhanPelangganController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
+
+Route::post('/keluhanPost', [KeluhanPelangganController::class, 'postCreate']);
+Route::get('/keluhan', [KeluhanPelangganController::class, 'index']);
+Route::get('/keluhanDetail/{id}', [KeluhanPelangganController::class, 'detail']);
+Route::put('/keluhanUpdate/{id}', [KeluhanPelangganController::class, 'update']);
+Route::get('/keluhan/export/{format}', [KeluhanPelangganController::class, 'export']);
 
 Auth::routes();
 
